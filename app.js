@@ -1,8 +1,9 @@
 
+'use strict'
+require('./search')
 
-var sort = require('./sort')
+var arr = [1,2,3,4,5,6,7,8,9]
 
-var arr = [3, 5, 65332, 4, 1, 231, 9, 765, 98798]
-console.log(arr)
+var b = arr.binarySearch(2,0,9)
 
-console.log(arr.quickSort())
+console.log(b)

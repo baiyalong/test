@@ -1,3 +1,5 @@
+'use strict'
+
 Array.prototype.selectSort = function () {
     var i, j, min, temp;
     for (i = 0; i < this.length; i++) {
@@ -72,4 +74,33 @@ Array.prototype.quickSort = function () {
     }
     return l.quickSort().concat(mid, r.quickSort())
 
+}
+
+
+Array.prototype.heapSort = function () {
+    var len = this.length;
+    var swap = (i, j) => {
+        let temp = this[i];
+        this[i] = this[j];
+        this[j] = temp;
+    }
+    var heap = (i, j) => {
+        var k = 2 * i + 1;
+        if (k > j) return;
+        if (k + 1 <= j && this[k] < this[k + 1]) k++;
+        if (this[i] < this[k]) {
+            swap(i, k);
+            heap(k, j);
+        }
+    }
+
+    for (let i = (len >> 1) - 1; i >= 0; i--) {
+        heap(i, len - 1)
+    }
+
+    for (let i = len - 1; i > 0; i--) {
+        swap(0, i);
+        heap(0, i - 1);
+    }
+    return this;
 }
